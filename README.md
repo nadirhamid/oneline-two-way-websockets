@@ -1,6 +1,6 @@
 Oneline Two Way WebSockets
 -----------------------------------------------------
-([!image]http://s31.postimg.org/gsetsr4aj/screencapture_54_84_205_60_two_way_two_way_html.png)
+[[!image]http://s31.postimg.org/gsetsr4aj/screencapture_54_84_205_60_two_way_two_way_html.png]
 
 oneline-two-way-websockets provides a simple example of 
 using websockets with server to client and client to server.
