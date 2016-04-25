@@ -1,0 +1,29 @@
+
+
+h1,h2,h3,h4,h5 {
+  padding: 0px;
+  margin: 0px;
+  float: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+#sendMessageForm {
+   border: 1px solid #E3E3E3;
+   padding: 10px;
+}
+
+#sendMessageBtn {
+   padding: 5px;
+   font-size: 17px;
+}
+
+#consoleLog {
+  width: 100%;
+  border: 1px solid #E3E3E3;
+  padding: 3px;
+  min-height: 800px;
+}
+

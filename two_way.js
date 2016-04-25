@@ -2,6 +2,7 @@ var app = window.app||{};
 	app.view = jQuery("#view");
 	app.startButton=jQuery("#startBtn");
 	app.endButton=jQuery("#endBtn"); 
+	app.sendButton=jQuery("#sendMessageBtn");
 	app.log=jQuery("#consoleLog");
       Oneline.setup({ 
             module: 'two_way', 
@@ -29,12 +30,29 @@ var app = window.app||{};
 		var currentText = jQuery(app.log).val();
 		var newText=currentText+"\r\n"+message;
 		jQuery( app.log ).val( newText );
+		app.log[0].scrollTop = app.log[0].scrollHeight;
 	 };
 	 app.warn = function(message) {
 		//alert(message);
 	};
+	app.sendMessage = function( event ) {
+		event.preventDefault();
+		 time = (Date.now()/1000);
+
+		 var msg = {
+			"two_way_message_from": app.fromNumber,
+			"two_way_message_to": jQuery("#messageTo").val(),
+			"two_way_message_text":  jQuery("#messageBody").val(),
+			"two_way_message_time": time
+		};
+		app.logData ( "Sending Message");
+		app.logData( JSON.stringify(msg) );
+		Oneline.once("send_message", msg);
+	 };
+			
 	 jQuery( app.startButton ).click(  app.startLogging );
 	 jQuery( app.endButton ).click( app.endPushing );
+	 jQuery( app.sendButton ).click( app.sendMessage );
 
 	Oneline.ready(function() {
 		jQuery(app.view).show();
@@ -52,6 +70,8 @@ var app = window.app||{};
 				} else if ( res.response.type === "end_push" ) {
 					app.logData("--- RECEIVED END PUSH RESPONSE ---");
 					app.warn("Pushing has stopped");
+				} else if ( res.response.type === "send_message" ) {
+					app.logData("--- RECEIVED SEND MESSAGE RESPONSE ---");
 				}
 			}
 				
